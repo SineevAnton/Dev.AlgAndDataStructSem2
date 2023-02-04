@@ -1,3 +1,5 @@
+package Dev.AlgAndDataStructSem2;
+
 import java.util.Random;
 
 public class heapSort
@@ -84,23 +86,33 @@ public class heapSort
         return arr;
     }
 
+    static void checkTime(int elementCount)
+    {
+        heapSort ob = new heapSort();
+        int arr[] = generateArray(elementCount);
+
+        long start = System.currentTimeMillis();
+        ob.sort(arr);
+        long finish = System.currentTimeMillis();
+
+        System.out.println("Время для сортировки " + elementCount + " элементов составляет: " + (finish-start) + " мс.");
+    }
+
     public static void main(String args[])
     {
-        int arr1[] = generateArray(100);
-        int arr2[] = generateArray(1000);
-        int arr3[] = generateArray(10000000);
-
+        //Демонстрация сортировки:
+        int arr[] = generateArray(100);
+        System.out.println("Исходный массив:");
+        printArray(arr);
         heapSort ob = new heapSort();
-        ob.sort(arr1);
-        ob.sort(arr2);
-        ob.sort(arr3);
+        ob.sort(arr);
+        System.out.println("Отсортированный массив:");
+        printArray(arr);
 
-        System.out.println("Sorted array is");
-
-        //Вывод закомментировал, чтобы не мусорить в консоли.
-
-        //printArray(arr1);
-        //printArray(arr2);
-        //printArray(arr3);
+        // Сравним время работы
+        checkTime(100);
+        checkTime(10000);
+        checkTime(1000000);
+        checkTime(10000000);
     }
 }
